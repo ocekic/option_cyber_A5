@@ -17,6 +17,8 @@
     "nodemon": "^3.1.0",
     "pino": "^8.19.0",
     "pino-pretty": "^11.0.0",
-    "reflect-metadata": "^0.2.1"
+    "reflect-metadata": "^0.2.1",
+    "sequelize": "^6.37.1",
+    "tedious": "^18.1.0"
   }
 }
