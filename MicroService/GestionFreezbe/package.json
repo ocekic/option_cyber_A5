@@ -1,0 +1,22 @@
+{
+  "devDependencies": {
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "config": "^3.3.11",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.10",
+    "express": "^4.19.1",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "nanoid": "^5.0.6",
+    "nodemon": "^3.1.0",
+    "pino": "^8.19.0",
+    "pino-pretty": "^11.0.0",
+    "reflect-metadata": "^0.2.1"
+  }
+}
