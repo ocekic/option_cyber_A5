@@ -1,4 +1,12 @@
 {
+  "name": "freezbeservice",
+  "main": "index.js",
+  "scripts": {
+    "start:build": "tsc -w",
+    "start:run": "nodemon ./dist/index.js",
+    "start": "concurrently npm:start:*",
+    "build": "tsc"
+  },
   "devDependencies": {
     "typescript": "^5.4.3"
   },
@@ -8,10 +16,12 @@
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "concurrently": "^8.2.2",
     "config": "^3.3.11",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dayjs": "^1.11.10",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
