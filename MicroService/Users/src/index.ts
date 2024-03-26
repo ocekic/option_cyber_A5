@@ -1,13 +1,26 @@
-import express from 'express';
+const express = require('express');
 import cors from 'cors';
 import dotenv from 'dotenv';
-const app = express();
+import User from './models/user.model';
 dotenv.config();
-const port = process.env.PORT || 3000;
 
+const app = express();
 
 app.use(express.json());
+
+const port = process.env.PORT || 3000;
+
+// connect to the db
+const db = require("./models");
 
 app.get('/', (req, res) => {
     res.json({ message: "User microservice" });
 });
+
+const UserRoutes = require('./routes/user.routes');
+app.use("/users", UserRoutes);
+
+app.listen(port, () => {
+    return console.log(`Express is listening at http://localhost:${port}`)
+})
+module.exports = app;
