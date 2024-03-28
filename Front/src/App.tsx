@@ -29,13 +29,7 @@ function App() {
     <>
       <Navbar isLogged={false} setIsLogged={() => { /* Logique pour changer l'état d'authentification */ }} />
       <CreateFrisbeeModal setFrisbees={setFrisbees} />
-      <div className="container pt-4">
-        {/* Bouton pour déclencher le modal d'ajout de frisbee */}
-        <button type="button" className="btn btn-outline-warning mb-4" data-bs-toggle="modal" data-bs-target="#create">Ajouter un frisbee</button>
-        
-        {/* Le composant FrisbeeTable affiche la liste des frisbees */}
         <FrisbeeTable frisbees={frisbees} setFrisbees={setFrisbees} />
-      </div>
     </>
   );
 }

@@ -48,10 +48,8 @@ const CreateFrisbeeModal: React.FC<CreateFrisbeeModalProps> = ({ setFrisbees }) 
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">Ajouter un frisbee</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              {/* Assure-toi d'inclure tous les champs ici, avec des classes CSS pour le style */}
               <input type="text" value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Nom du frisbee" required />
               <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" required />
               <input type="number" value={pUHT} onChange={(e) => setPUHT(Number(e.target.value))} placeholder="Prix UHT" required />
