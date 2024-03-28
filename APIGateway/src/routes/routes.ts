@@ -15,4 +15,16 @@ const routes = [
             }
         }
     },
+    {
+        url: '/freezbe',
+        middleware: [authJwt.verifyToken],
+        proxy: {
+            target: "http://127.0.0.1:7000",
+            changeOrigin: true,
+            pathRewrite: (path, req)=> {
+                let newPath = path.replace(/^\/freezbe/, '/');
+                return newPath;
+            }
+        }
+    },
 ]
