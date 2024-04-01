@@ -4,7 +4,10 @@
   "description": "User Microservice ",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --config nodemon.json src/index.ts"
+    "start:build": "tsc -w",
+    "start:run": "nodemon ./dist/index.js",
+    "start": "concurrently npm:start:*",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",

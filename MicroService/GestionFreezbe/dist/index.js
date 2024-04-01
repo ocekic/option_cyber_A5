@@ -11,6 +11,8 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 const port = process.env.PORT || 7000;
+const cors = require('cors');
+app.use(cors());
 // db connection
 const db = require("./models/dbconnexion");
 app.get('/', (req, res) => {

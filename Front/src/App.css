@@ -3,14 +3,10 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, rgb(0, 0, 0), rgb(0, 0, 0)); /* Un fond avec un dégradé */
+    background: linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 255, 255)); /* Un fond avec un dégradé */
   }
   
-  /* Assure-toi que ta classe .container soit appliquée dans ton JSX pour que cela fonctionne */
-  .container {
-    animation: float 6s ease-in-out infinite; /* Une animation légère flottante */
-  }
-  
+ 
   /* Animation flottante pour le container */
   @keyframes float {
     0%, 100% { transform: translateY(0); }
@@ -128,4 +124,39 @@ body, html {
     background-color: #e64a19;
   }
   
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  /* Style pour les en-têtes de tableau */
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  /* Style pour rendre le tableau plus lisible en zébrant les lignes */
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Style pour les boutons dans le tableau */
+  .table button {
+    margin: 0;
+    padding: .375rem .75rem;
+  }
+  
+  /* Style pour aligner les boutons delete à droite */
+  .table-action-cell {
+    text-align: right;
+  }
   

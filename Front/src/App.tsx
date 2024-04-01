@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Frisbee } from './type/frizbee'; // Assure-toi que le chemin est correct
 import CreateFrisbeeModal from './dashboard/createFrisbeeModal'; // Assure-toi que le chemin est correct
+
 import Navbar from './dashboard/navbar'; // Assure-toi que le chemin est correct
 import FrisbeeTable from './dashboard/frisbeeTable'; // Assure-toi que ce composant existe et qu'il est correctement importé
 
@@ -28,8 +29,8 @@ function App() {
   return (
     <>
       <Navbar isLogged={false} setIsLogged={() => { /* Logique pour changer l'état d'authentification */ }} />
-      <CreateFrisbeeModal setFrisbees={setFrisbees} />
-        <FrisbeeTable frisbees={frisbees} setFrisbees={setFrisbees} />
+      <CreateFrisbeeModal/>
+        <FrisbeeTable />
     </>
   );
 }
