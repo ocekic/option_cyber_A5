@@ -2,9 +2,12 @@
   "name": "apigateway",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "nodemon --config nodemon.json src/index.ts"
+    "start:build": "tsc -w",
+    "start:run": "nodemon ./dist/index.js",
+    "start": "concurrently npm:start:*",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +32,7 @@
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "concurrently": "^8.2.2",
     "config": "^3.3.11",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
