@@ -23,7 +23,4 @@ app.get('/', (req, res) => {
 });
 const UserRoutes = require('./routes/user.routes');
 app.use("/users", UserRoutes);
-app.listen(port, () => {
-    return console.log(`Express is listening at http://localhost:${port}`);
-});
 module.exports = app;
