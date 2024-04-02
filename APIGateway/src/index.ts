@@ -14,7 +14,3 @@ app.get('/', (req, res) => {
 const db = require('./models');
 
 require('./routes/auth.routes')(app);
-
-app.listen(port, () => {
-    return console.log(`Express is listening at http://localhost:${port}`)
-})

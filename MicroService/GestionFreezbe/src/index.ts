@@ -20,7 +20,3 @@ app.get('/', (req, res) => {
 
 const FreezbeRoute = require("./routes/freezbe.routes");
 app.use("/freezbe", FreezbeRoute);
-
-app.listen(port, () => {
-    return console.log(`Listening at http://localhost:${port}`);
-});
