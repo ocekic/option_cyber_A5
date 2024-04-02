@@ -13,7 +13,7 @@ export default class FrisbeeTable extends React.Component<{}, FrisbeeTableState>
   }
 
   componentDidMount() {
-    axios.get('http://localhost:7000/freezbe')
+    axios.get('http://localhost:8000/freezbe')
       .then(res => {
         const frisbee: Frisbee[] = res.data;
         this.setState({ frisbee });
@@ -24,7 +24,7 @@ export default class FrisbeeTable extends React.Component<{}, FrisbeeTableState>
   }
 
   handleDelete = (idToDelete: string) => {
-    axios.delete(`http://localhost:7000/freezbe/${idToDelete}`)
+    axios.delete(`http://localhost:8000/freezbe/${idToDelete}`)
       .then(() => {
         this.setState(prevState => ({
           frisbee: prevState.frisbee.filter(frisbeeItem => frisbeeItem._id !== idToDelete)
