@@ -13,6 +13,7 @@ RUN npm install
 
 # Copy the rest of the application's source code
 COPY . .
+<<<<<<< HEAD
 
 # Build the TypeScript project
 RUN npm run build
@@ -22,3 +23,8 @@ EXPOSE 8000
 
 # Command to run the compiled JavaScript with node (not using nodemon in production)
 CMD ["node", "dist/index.js"]
+=======
+RUN npm run build
+EXPOSE 8000
+CMD ["node", "dist/index.js"]
+>>>>>>> fb8b58dcae0584cbe170b2b956f3d2881b7d41df
