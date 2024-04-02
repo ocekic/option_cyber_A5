@@ -1,49 +1,40 @@
-import React from 'react'; // Importer React depuis la bibliothèque react
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Importer useNavigate pour la navigation
+
 interface NavbarProps {
-    isLogged: boolean
-    setIsLogged: (isLogged: boolean) => void
+    isLogged: boolean;
+    setIsLogged: (isLogged: boolean) => void;
 }
 
-const Navbar = ({isLogged, setIsLogged}: NavbarProps) => {
+const Navbar: React.FC<NavbarProps> = ({ isLogged, setIsLogged }) => {
+    const navigate = useNavigate(); // Utiliser useNavigate pour la navigation
 
     const logout = () => {
         localStorage.removeItem('JWT_auth_KillerBee');
-        setIsLogged(false)
-    }
+        setIsLogged(false);
+    };
+
+    const handleShowRegisterPage = () => {
+        navigate('/register'); // Utiliser navigate pour naviguer vers la page d'inscription
+    };
 
     return (
-        <>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="#">KillerBee</a>
-                
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav ms-auto">
-                            {isLogged ?
-                                <>
-                                    <div className="d-flex" role="search">
-                                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                                    </div>
-                                    <li className="nav-item">
-                                        <button type="button" className="btn btn-outline-primary ms-2" onClick={logout}>Se déconnecter</button>
-                                    </li>
-                                </>
-                                :
-                                <>
-                                    <li className="nav-item">
-                                        <button type="button" className="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#register">Créer un compte</button>
-                                    </li>
-                                    <li className="nav-item">
-                                        <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#login">Se connecter</button>
-                                    </li>
-                                </>
-                            }
-                        </ul>
-                    </div>
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <div className="container-fluid">
+                <a className="navbar-brand" href="/">KillerBee</a>
+                <div className="navbar-nav ms-auto">
+                    {isLogged ? (
+                        <button type="button" className="btn btn-outline-primary" onClick={logout}>Se déconnecter</button>
+                    ) : (
+                        <>
+                            <button type="button" className="btn btn-outline-primary me-2" onClick={handleShowRegisterPage}>Créer un compte</button>
+                            <button type="button" className="btn btn-outline-primary">Se connecter</button>
+                        </>
+                    )}
                 </div>
-            </nav>
-        </>
-    )
-}
+            </div>
+        </nav>
+    );
+};
 
-export default Navbar
+export default Navbar;

@@ -1,78 +1,81 @@
-import axios from "axios";
-import {useState} from "react";
+// RegisterModal.tsx
+import React from 'react';
+import axios from 'axios';
 
-const RegisterModal = () => {
-
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-
-    const handleSubmit = (event: React.FormEvent) => {
-        event.preventDefault()
-        if (username === '' || password === '') {
-            return
-        }
-        axios.post(import.meta.env.VITE_URL_MS_USER + '/create',
-            null,{
-                params: {
-                    username: username,
-                    password: password,
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-        setUsername('')
-        setPassword('')
-    }
-
-    return (
-        <>
-            <div className="modal fade" id="register" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <form>
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h1 className="modal-title fs-5" id="exampleModalLabel">Créer un compte</h1>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="form-group">
-                                    <label htmlFor="username">Username</label>
-                                    <input
-                                        value={username}
-                                        onChange={e => setUsername(e.target.value)}
-                                        type="text"
-                                        className="form-control"
-                                        id="username"
-                                        placeholder="Saisissez votre nom d'utilisateur"
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="password">Mot de passe</label>
-                                    <input
-                                        value={password}
-                                        onChange={e => setPassword(e.target.value)}
-                                        type="password"
-                                        className="form-control"
-                                        id="password"
-                                        placeholder="Saisissez votre mot de passe"
-                                        required
-                                    />
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Annuler
-                                </button>
-                                <button type="submit" className="btn btn-primary" data-bs-toggle="modal" onClick={handleSubmit}>Créer un compte</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </>
-    )
+interface State {
+  nom: string;
+  prenom: string;
+  username: string;
+  password: string;
 }
 
-export default RegisterModal
+export default class RegisterModal extends React.Component<{}, State> {
+  state: State = {
+    nom: '',
+    prenom: '',
+    username: '',
+    password: '',
+  };
+
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value } as Pick<State, keyof State>);
+  };
+
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const user = {
+      surname: this.state.nom,
+      name: this.state.prenom,
+      username: this.state.username,
+      password: this.state.password,
+    };
+
+    axios.post('http://localhost:3000/users/CreateUser', user, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      // Ici, tu peux gérer la réponse, par exemple en redirigeant l'utilisateur vers la page de connexion
+      console.log(response.data);
+      // Supposons que tu veuilles vider le formulaire après l'inscription :
+      this.setState({
+        nom: '',
+        prenom: '',
+        username: '',
+        password: '',
+      });
+    })
+    .catch(error => {
+      console.error("Erreur lors de la création de l'utilisateur:", error);
+    });
+  };
+
+  render() {
+    return (
+      <div className="container mt-5">
+        <h2>Créer un compte</h2>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="nom">Nom</label>
+            <input type="text" id="nom" name="nom" value={this.state.nom} onChange={this.handleChange} className="form-control my-2" placeholder="Nom" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" value={this.state.prenom} onChange={this.handleChange} className="form-control my-2" placeholder="Prénom" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="username">Nom d'utilisateur</label>
+            <input type="text" id="username" name="username" value={this.state.username} onChange={this.handleChange} className="form-control my-2" placeholder="Nom d'utilisateur" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Mot de passe</label>
+            <input type="password" id="password" name="password" value={this.state.password} onChange={this.handleChange} className="form-control my-2" placeholder="Mot de passe" required />
+          </div>
+          <button type="submit" className="btn btn-primary">Créer un compte</button>
+        </form>
+      </div>
+    );
+  }
+}

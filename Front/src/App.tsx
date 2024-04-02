@@ -1,37 +1,27 @@
-import './App.css'
+// App.tsx
+import './App.css';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Frisbee } from './type/frizbee'; // Assure-toi que le chemin est correct
-import CreateFrisbeeModal from './dashboard/createFrisbeeModal'; // Assure-toi que le chemin est correct
-
-import Navbar from './dashboard/navbar'; // Assure-toi que le chemin est correct
-import FrisbeeTable from './dashboard/frisbeeTable'; // Assure-toi que ce composant existe et qu'il est correctement importé
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Frisbee } from './type/frizbee';
+import CreateFrisbeeModal from './dashboard/createFrisbeeModal';
+import Navbar from './dashboard/navbar';
+import FrisbeeTable from './dashboard/frisbeeTable';
+import RegisterPage from './dashboard/registerPage'; // Assure-toi que le chemin est correct pour RegisterPage
 
 function App() {
   const [frisbees, setFrisbees] = useState<Frisbee[]>([]);
-
-  useEffect(() => {
-    // Charger initialement la liste des frisbees
-    const fetchFrisbees = async () => {
-      try {
-        const response = await axios.get<Frisbee[]>(`${import.meta.env.VITE_URL_MS_FRISBEE}/getAllFreezeBeeModels`);
-        setFrisbees(response.data);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des modèles de frisbees:", error);
-      }
-    };
-
-    fetchFrisbees();
-  }, []);
-
-  // La fonction pour ajouter un nouveau frisbee n'est pas nécessaire ici car elle est gérée dans CreateFrisbeeModal
+  const [isLogged, setIsLogged] = useState<boolean>(false); // Simule l'état de connexion
 
   return (
-    <>
-      <Navbar isLogged={false} setIsLogged={() => { /* Logique pour changer l'état d'authentification */ }} />
-      <CreateFrisbeeModal/>
-        <FrisbeeTable />
-    </>
+    <Router>
+      <Navbar isLogged={isLogged} setIsLogged={setIsLogged} />
+      <Routes>
+        <Route path="/" element={<><CreateFrisbeeModal />
+        <FrisbeeTable/></>} />
+        <Route path="/register" element={<RegisterPage />} />
+        {/* Ajoute ici d'autres routes si nécessaire */}
+      </Routes>
+    </Router>
   );
 }
 

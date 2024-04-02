@@ -1,5 +1,4 @@
 const express = require('express');
-import cors from 'cors';
 import dotenv from 'dotenv';
 import User from './models/user.model';
 dotenv.config();
@@ -9,6 +8,9 @@ const app = express();
 app.use(express.json());
 
 const port = process.env.PORT || 3000;
+
+const cors = require('cors');
+app.use(cors());
 
 // connect to the db
 const db = require("./models");
