@@ -10,6 +10,9 @@ const port = process.env.PORT || 8000;
 
 const cors = require('cors');
 app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000' // Autoriser les requêtes depuis le front-end
+  }));
 
 // db connection
 const db = require("./models/dbconnexion");

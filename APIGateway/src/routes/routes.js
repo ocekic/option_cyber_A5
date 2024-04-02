@@ -7,7 +7,7 @@ const routes = [
         url: '/users',
         middleware: [middleware_1.authJwt.verifyToken],
         proxy: {
-            target: "http://127.0.0.1:3000",
+            target: "http://users:9000",
             changeOrigin: true,
             pathRewrite: (path, req) => {
                 let newPath = path.replace(/^\/users/, '/');
@@ -20,7 +20,7 @@ const routes = [
         url: '/freezbe',
         middleware: [middleware_1.authJwt.verifyToken],
         proxy: {
-            target: "http://127.0.0.1:7000",
+            target: "http://gestion-freezbe:8000",
             changeOrigin: true,
             pathRewrite: (path, req) => {
                 let newPath = path.replace(/^\/freezbe/, '/');
