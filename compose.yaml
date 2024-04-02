@@ -1,6 +1,13 @@
 version: '3.8'
 
 services:
+  mongodb:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
   api-gateway:
     build: ./APIGateway
     ports:
@@ -28,13 +35,6 @@ services:
       - "9000:9000"
     depends_on:
       - mongodb
-
-  mongodb:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
 
 volumes:
   mongodb_data:
