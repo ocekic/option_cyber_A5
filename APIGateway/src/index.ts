@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 const app = express();
 dotenv.config();
 app.use(cors())
-const port = process.env.PORT || 1000;
+const port = process.env.PORT || 7000;
 app.use(express.json());
 app.get('/', (req, res) => {
     res.json({ message: "Api Gateway" });
