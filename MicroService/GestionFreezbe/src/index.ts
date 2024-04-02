@@ -9,11 +9,11 @@ app.use(express.json());
 const port = process.env.PORT || 8000;
 
 const cors = require('cors');
-app.use(cors());
 app.use(cors({
-    origin: 'http://localhost:3000' // Autoriser les requêtes depuis le front-end
-  }));
-
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 // db connection
 const db = require("./models/dbconnexion");
 

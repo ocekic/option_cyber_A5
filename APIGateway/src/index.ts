@@ -4,7 +4,11 @@ import dotenv from 'dotenv';
 
 const app = express();
 dotenv.config();
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
 const port = process.env.PORT || 7000;
 app.use(express.json());
 app.get('/', (req, res) => {

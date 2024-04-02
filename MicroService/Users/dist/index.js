@@ -10,7 +10,12 @@ const app = express();
 app.use(express.json());
 const port = process.env.PORT || 9000;
 const cors = require('cors');
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
+
 // connect to the db
 const db = require("./models");
 app.get('/', (req, res) => {

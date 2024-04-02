@@ -12,7 +12,12 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 const port = process.env.PORT || 8000;
 const cors = require('cors');
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 // db connection
 const db = require("./models/dbconnexion");
 app.get('/', (req, res) => {
@@ -20,6 +25,3 @@ app.get('/', (req, res) => {
 });
 const FreezbeRoute = require("./routes/freezbe.routes");
 app.use("/freezbe", FreezbeRoute);
-app.listen(port, () => {
-    return console.log(`Listening at http://localhost:${port}`);
-});

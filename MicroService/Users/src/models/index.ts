@@ -6,7 +6,7 @@ dotenv.config();
 
 mongoose.set('strictQuery',true);
 
-mongoose.connect("mongodb://127.0.0.1:27017/Users");
+mongoose.connect("mongodb://mongodb:27017/Users");
 
 // @ts-ignore
 const db = mongoose.connection;
