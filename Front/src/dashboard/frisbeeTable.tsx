@@ -13,26 +13,26 @@ export default class FrisbeeTable extends React.Component<{}, FrisbeeTableState>
   }
 
   componentDidMount() {
-    axios.get('http://api-gateway:7000/freezbe')
-      .then(res => {
-        const frisbee: Frisbee[] = res.data;
-        this.setState({ frisbee });
-      })
-      .catch(error => {
-        console.error("Il y a eu un problème avec la requête Axios", error);
-      });
+    axios.get(`http://localhost:8000/freezbe`, { withCredentials: true })
+    .then(res => {
+      const frisbee: Frisbee[] = res.data;
+      this.setState({ frisbee });
+    })
+    .catch(error => {
+      console.error("Il y a eu un problème avec la requête Axios", error);
+    });
   }
 
   handleDelete = (idToDelete: string) => {
-    axios.delete(`http://api-gateway:7000/freezbe/${idToDelete}`)
-      .then(() => {
-        this.setState(prevState => ({
-          frisbee: prevState.frisbee.filter(frisbeeItem => frisbeeItem._id !== idToDelete)
-        }));
-      })
-      .catch(error => {
-        console.error("Il y a eu un problème avec la requête de suppression Axios", error);
-      });
+    axios.delete(`http://localhost:8000/freezbe/${idToDelete}`)
+    .then(() => {
+      this.setState(prevState => ({
+        frisbee: prevState.frisbee.filter(frisbeeItem => frisbeeItem._id !== idToDelete)
+      }));
+    })
+    .catch(error => {
+      console.error("Il y a eu un problème avec la requête de suppression Axios", error);
+    });
   }
   
   renderTableData() {

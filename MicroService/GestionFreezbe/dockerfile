@@ -1,30 +1,8 @@
-# Use the official Node.js 18 image as a base
 FROM node:18
-
-# Set the working directory inside the container
-WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json (or npm's equivalent)
+WORKDIR /srv/app
 COPY package*.json ./
-
-# Install dependencies, including 'devDependencies' since we need them for building the TypeScript project.
-# For production, consider installing only 'dependencies' and globally installing typescript and other build tools as needed.
 RUN npm install
-
-# Copy the rest of the application's source code
 COPY . .
-<<<<<<< HEAD
-
-# Build the TypeScript project
-RUN npm run build
-
-# Expose the port the app runs on
-EXPOSE 8000
-
-# Command to run the compiled JavaScript with node (not using nodemon in production)
-CMD ["node", "dist/index.js"]
-=======
 RUN npm run build
 EXPOSE 8000
 CMD ["node", "dist/index.js"]
->>>>>>> fb8b58dcae0584cbe170b2b956f3d2881b7d41df

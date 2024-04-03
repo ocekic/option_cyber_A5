@@ -1,20 +1,26 @@
-import express from 'express';
+import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-const app = express();
 dotenv.config();
-app.use(cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-  }));
-const port = process.env.PORT || 7000;
+
+const app: Express = express();
+app.use(cors()); // CORS devrait être en haut
 app.use(express.json());
-app.get('/', (req, res) => {
-    res.json({ message: "Api Gateway" });
+
+// Importez et configurez vos routes et proxies ici
+const { ROUTES } = require('./routes/routes');
+const { setupProxies } = require('./middleware/proxy');
+setupProxies(app, ROUTES);
+
+// Route principale pour tester que l'API est opérationnelle
+app.get('/', (req: Request, res: Response) => {
+    res.json({ message: "API Gateway" });
 });
 
-const db = require('./models');
+const port: string | number = process.env.PORT || 7000;
 
-require('./routes/auth.routes')(app);
+// Démarrage de l'API Gateway
+app.listen(port, () => {
+    console.log(`API Gateway running on port ${port}`);
+});

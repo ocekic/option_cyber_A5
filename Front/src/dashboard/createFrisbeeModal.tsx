@@ -29,7 +29,7 @@ export default class CreateFrisbeeModal extends React.Component {
       grammage: this.state.grammage
     };
 
-    axios.post('http://api-gateway:7000/freezbe', frisbee, {
+    axios.post('http://localhost:8000/freezbe', frisbee, {
       headers: {
         'Content-Type': 'application/json'
       }
