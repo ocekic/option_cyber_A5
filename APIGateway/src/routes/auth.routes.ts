@@ -9,6 +9,6 @@ module.exports = (app) => {
         );
         next();
     });
+    app.get("/signin", controller.signin);
     app.post("/signup", controller.signup);
-    app.post("/signin", controller.signin);
 };

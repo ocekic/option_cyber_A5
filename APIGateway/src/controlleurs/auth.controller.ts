@@ -15,7 +15,7 @@ const fetch = require("node-fetch");
 exports.signin = async (req, res) => {
     try {
         // Remplacer par l'URL de ton microservice utilisateur
-        const serviceUrl = 'http://127.0.0.1:3000/users/getUser/' + encodeURIComponent(req.body.username);
+        const serviceUrl = 'http://users:9000/users/getUser/' + encodeURIComponent(req.body.username);
 
         const userServiceResponse = await fetch(serviceUrl, {
             method: 'GET', // Supposant que la méthode est GET pour récupérer l'utilisateur

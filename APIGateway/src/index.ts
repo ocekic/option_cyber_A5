@@ -28,3 +28,4 @@ const port: string | number = process.env.PORT || 7000;
 app.listen(port, () => {
     console.log(`API Gateway running on port ${port}`);
 });
+
