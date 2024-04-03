@@ -14,6 +14,9 @@ services:
       - "7000:7000"
     depends_on:
       - mongodb
+    environment:
+      - DB_URI_USERS=mongodb://mongodb:27017/Users 
+      - DB_URI_FREEZBE=mongodb://mongodb:27017/freezbes 
 
   front:
     build: ./Front
@@ -28,6 +31,8 @@ services:
       - "8000:8000"
     depends_on:
       - mongodb
+    environment:
+      - DB_URI=mongodb://mongodb:27017/freezbes
 
   users:
     build: ./MicroService/Users
@@ -35,6 +40,8 @@ services:
       - "9000:9000"
     depends_on:
       - mongodb
+    environment:
+      - DB_URI=mongodb://mongodb:27017/Users
 
 volumes:
   mongodb_data:

@@ -31,7 +31,7 @@ export default class RegisterModal extends React.Component<{}, State> {
       password: this.state.password,
     };
 
-    axios.post('http://localhost:9000/users/CreateUser', user, {
+    axios.post('http://127.0.0.1:9000/users/CreateUser', user, {
       headers: {
         'Content-Type': 'application/json'
       }

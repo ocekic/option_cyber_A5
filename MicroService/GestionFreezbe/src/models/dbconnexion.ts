@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 
 // Connexion à la bdd avec le nom du service MongoDB spécifié dans docker-compose.yml
-mongoose.connect("mongodb://mongodb:27017/freezbes", {
+mongoose.connect(process.env.DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

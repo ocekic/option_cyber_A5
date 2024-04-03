@@ -8,13 +8,13 @@ dotenv.config();
 mongoose.set('strictQuery', true);
 
 // Connexion à la base de données des utilisateurs
-const usersDb = mongoose.createConnection("mongodb://mongodb:27017/Users", {
+const usersDb = mongoose.createConnection(process.env.DB_URI_USERS, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
 // Connexion à la base de données freezbes
-const freezbesDb = mongoose.createConnection("mongodb://mongodb:27017/freezbes", {
+const freezbesDb = mongoose.createConnection(process.env.DB_URI_FREEZBE, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

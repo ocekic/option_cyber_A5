@@ -8,6 +8,10 @@ const app: Express = express();
 app.use(cors()); // CORS devrait être en haut
 app.use(express.json());
 
+
+const db = require('./models');
+require('./routes/auth.routes')(app);
+
 // Importez et configurez vos routes et proxies ici
 const { ROUTES } = require('./routes/routes');
 const { setupProxies } = require('./middleware/proxy');
